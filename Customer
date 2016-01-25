@@ -1,0 +1,42 @@
+
+public class Customer {
+    String fname;
+    String lname;
+    String comp;
+    String phone;
+    String mail;
+    String addr;
+    public Customer(String fname,String lname, String comp,String phone,String mail,String addr)
+    {
+       this.fname = fname;
+       this.lname = lname;
+       this.comp = comp;
+       this.phone = phone;
+       this.mail = mail;
+       this.addr = addr;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public String getComp() {
+        return comp;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getAddr() {
+        return addr;
+    }
+}
