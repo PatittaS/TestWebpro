@@ -1,0 +1,48 @@
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class CustomerUtilities {
+    Connection conn;
+    Statement stm;
+    ResultSet result;
+    PreparedStatement prepare;
+    
+    public void runable()
+    {
+         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://database.it.kmitl.ac.th:3306/it_28";
+            String user = "it_28";
+            String pwd = "wgSdAL8k";
+            conn = DriverManager.getConnection(url,user,pwd);
+            stm = conn.createStatement();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CustomerUtilities.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerUtilities.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void insert(Customer record)
+    {
+        String sqlCmd = "INSERT INTO Customer " +"(firstname,lastname,company,mobile,email,address) " + 
+    					"VALUES (?,?,?,?,?,?) ";
+        try {
+            //int idnumber = countrow()+1;
+            prepare = conn.prepareStatement(sqlCmd);
+                        prepare.setString(1, record.getFname());
+                         prepare.setString(2, record.getLname());
+    			prepare.setString(3, record.getComp());
+    			prepare.setString(4, record.getPhone());
+    			prepare.setString(5, record.getMail());
+    			prepare.setString(6, record.getAddr());
+                        
+    			prepare.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerUtilities.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+}
